@@ -1,0 +1,30 @@
+input#name {
+  border: 0;
+  outline: 0;
+  background: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  box-decoration-break:0px;
+  border-radius: 0px;
+}
+form {
+  margin-top: 10%;
+  margin-left: 35%;
+  margin-right: 40%;
+}
+button {
+  margin-left: 35%;
+  /*border-radius: 0px;*/
+}
+
+@media only screen and (max-width: 780px) {
+  button {
+    margin-left: 35%;
+    /*border-radius: 0px;*/
+  }
+  .allBody {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}

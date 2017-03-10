@@ -1,0 +1,16 @@
+<div class="allBody">
+
+
+<form novalidate [formGroup]="myForm1" (ngSubmit)="submit()">
+  <h3 style="text-align:center">Admin Registration</h3><br>
+  <h4 style="color:grey;text-align:center">Set your sub-domain</h4>
+  <div class="form-group">
+
+    <input type="text" formControlName="subDomain" id="name" #name class="form-control" value="TECH">
+    <!-- <span class="text-danger" *ngIf="myForm.get('email').hasError('noEmail') "> Email is required and format should be <i>admin@mail.com</i></span> -->
+  </div>
+  <p style="color:grey;text-align:center"><small>This is subdomain of Admin , e.g tech.pinup.com or sales.pinup.com</small></p>
+  <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-send"></span> submit</button>
+
+</form>
+</div>

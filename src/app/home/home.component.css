@@ -1,0 +1,77 @@
+.navbar {
+  color: 	#00CED1;
+  text-transform: full-width;
+  font-family: Helvetica, Arial, sans-serif;
+font-size: 14px;
+}
+h4{
+  padding:20px;
+}
+
+.setting {
+  cursor: pointer;
+}
+ul.dropdown-menu {
+  position: absolute;
+      border: 1px solid #C3D1EC;
+      box-shadow: 0 1px 5px #CCCCCC;
+      white-space: wrap;
+
+}
+#menus:hover{
+  color: 	#00CED1;
+}
+input#name {
+  border: 0;
+  outline: 0;
+  background: none;
+  /*border-bottom: 1px solid black;*/
+  text-align:center;;
+  box-decoration-break:0px;
+  font-family: LucidaGrande-Bold;
+
+}
+.sidebar {
+  border-right: 2px solid black;
+height:600px;
+position: relative;
+
+}
+
+.cName {
+  text-align: center;
+color: #010101;
+font-family: LucidaGrande;
+font-size: 16px;
+}
+
+.Home {
+text-align: center;
+color: #010101;
+font-family: LucidaGrande-Bold;
+/*font-size: 16px;*/
+
+}
+hr {
+    border: none;
+    height: 1px;
+    /*color: #333; */
+    background-color: #333;
+}
+
+form {
+    margin-left: 30px;
+}
+/*@media only screen and (min-width:300px) and (max-width:800px){
+  li {
+    padding:10px;
+    display:inline-block;
+  }
+  ul{
+    margin-top: -70px;
+  }
+  form {
+    margin-left: -50px;
+  }
+
+}*/
