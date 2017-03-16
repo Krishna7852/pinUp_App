@@ -21,7 +21,7 @@ export class LogInComponent implements OnInit {
   }
   onlogIn(): void {
     this.auth.onLogin(this.myForm.value)
-  console.log(this.myForm.value);
+  // console.log(this.myForm.value);
     // this.router.navigate(['/home']);
   }
   ngOnInit(): any {

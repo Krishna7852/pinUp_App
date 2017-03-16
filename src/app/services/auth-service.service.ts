@@ -1,17 +1,27 @@
-import {	Http, Headers}	from	'@angular/http';
+import {	Http, Headers ,Response}	from	'@angular/http';
 import {	Injectable	}	from	'@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs';
+import { Observable } from 'rxjs'
+import 'rxjs/Rx';
 @Injectable()
 export class AuthService {
-  private baseUrl = 'http://192.168.0.40:3000';
+  private topicUrl = 'http://192.168.0.6:3000';
+  private baseUrl = 'http://192.168.0.3:3000';
   public email: any;
   public selectedDomain:any;
+  public getToken:any;
+  public myUser:any=[];
 		constructor(private http: Http, private router: Router) {}
-
+// onAdminUser() {
+//   console.log(this.myUser)
+//   return this.myUser;
+// }
   onRegisterAdmin(user) {
     this.email = user.emailAddress;
-    console.log(this.email)
+    // this.myUser = user;
+    // console.log(this.myUser)
+
+    // console.log(this.email)
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let myJson = {
@@ -26,9 +36,11 @@ export class AuthService {
 
   onLogin(loginUser) {
     return this.http.post(this.baseUrl + '/admin/signin', loginUser).subscribe(response => {
-      localStorage.setItem('token', response.json().token);
-      this.router.navigate(['/admin',this.selectedDomain]);
-    //   console.log(response)
+      this.getToken =response.json().token;
+      console.log(this.getToken)
+      localStorage.setItem('token',this.getToken );
+      this.router.navigate(['admin',this.selectedDomain]);
+      console.log(response)
       alert(response.json().description);
     },
       error => {
@@ -38,7 +50,7 @@ export class AuthService {
     );
   }
   logout() {
-     this.router.navigate(['/login']);
+     this.router.navigate(['/subdomain']);
  }
 
 
@@ -57,9 +69,39 @@ export class AuthService {
         alert(subDomain.message);
       }
       this.selectedDomain =subDomain.domainRedirection;
-  // this.router.navigate(['/login']);
+
     });
   }
+
+onPostTopic(topic) {
+
+  var headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+    headers.append('x-token',this.getToken);
+console.log('pstTopic',topic);
+return this.http.post(this.topicUrl+'/admin/addTopic',topic,{ headers: headers })
+.subscribe((res: any) => {
+    let Topic = res.json();
+    console.log(Topic);
+    alert(topic.topic+' '+Topic.message);
+})
+
+}
+onGetTopic() {
+  var headers = new Headers();
+  if(!this.getToken)
+  {
+    this.getToken=localStorage.getItem('token');
+  }
+  headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('x-token',this.getToken);
+
+      return this.http.get(this.topicUrl+'/admin/getTopicList',{ headers: headers });;
+
+
+  // return this.http.get(this.topicUrl+'/admin/getTopicList',{ headers: headers });
+
+}
   isAuthenticated() {
     if (localStorage.getItem('token')) {
       return true;

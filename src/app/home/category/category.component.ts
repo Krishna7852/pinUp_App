@@ -11,20 +11,6 @@ export class CategoryComponent implements OnInit {
   constructor() {
 
   }
-  // console.log(name)
-  // framework = 'Angular 2';
-  //    options = [
-  //        {
-  //            name: 'krishna',
-  //            label: 'JS',
-  //            id: 0
-  //        },
-  //        {
-  //            name: 'vaibhav',
-  //            label: 'JK',
-  //            id: 1
-  //        }
-  //    ];
   ngOnInit() {
   }
 

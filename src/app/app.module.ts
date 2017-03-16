@@ -12,12 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { routing } from './routing';
 // import { routingHome } from './home/routingHome';
 import { CategoryComponent } from './home/category/category.component';
-import { DisplayComponent } from './home/display/display.component';
 import { LogInComponent } from './log-in/log-in.component';
 // import { Ng2SelectModule } from 'ng2-material-select';
 import {AuthService } from './services/auth-service.service';
 import { AuthGuard } from './services/authGuard';
 import { PopoverModule } from 'ng2-popover';
+import {Ng2DragDropModule} from "ng2-drag-drop";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,6 @@ import { PopoverModule } from 'ng2-popover';
     SubDomainComponent,
     HomeComponent,
     CategoryComponent,
-    DisplayComponent,
     LogInComponent
   ],
   imports: [
@@ -34,12 +34,13 @@ import { PopoverModule } from 'ng2-popover';
     HttpModule,
 ReactiveFormsModule,
     routing,
-     PopoverModule
-    // Ng2SelectModule
+     PopoverModule,
+    Ng2DragDropModule
     // routingHome
 
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}

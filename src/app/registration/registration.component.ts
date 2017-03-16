@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
         console.log(data)
       });
       console.log(this.myForm.value)
-      this.router.navigate(['/sub-domain']);
+      this.router.navigate(['/subdomain']);
 
     }
 
