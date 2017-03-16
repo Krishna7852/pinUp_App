@@ -6,38 +6,45 @@ import { AuthService } from '../services/auth-service.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-// declare var $:JQueryStatic;
 export class HomeComponent implements OnInit {
   title = 'app works!';
-    newString: string = '';
-     Card: any= [];
-     CardObj: any;
-private myDomain:any;
- // product: any;
-data : any;
-  constructor(private auth:AuthService, private route:ActivatedRoute) {
+  topic: string = '';
+  Card: any = [];
+  CardObj: any;
+  private myDomain: any;
+  data: any;
+  myAdmin: string;
+  constructor(private auth: AuthService, private route: ActivatedRoute) {
 
-   }
+  }
 
-   addToCard(event) {
-     this.CardObj = {
-       newString: this.newString
-     }
-        console.log(this.Card)
-     this.Card.push(this.CardObj);
-     this.newString = '';
-     event.preventDefault();
-   }
-   onLogout() {
-      this.auth.logout();
-  localStorage.clear();
-  // window.history.back();
+  addToCard(event): void {
+      this.CardObj = {
+      topic: this.topic
+    }
+    this.auth.onPostTopic(this.CardObj);
+    console.log('card ', this.CardObj);
+    this.topic = '';
+    event.preventDefault();
+    location.reload();
+  }
+  onLogout() {
+    this.auth.logout();
+    localStorage.clear();
   }
   ngOnInit() {
-    this.myDomain = this.route.params.subscribe(params => {
+      this.myAdmin = localStorage.getItem('username');
+
+      console.log('myAdmin :-', this.myAdmin);
+      this.auth.onGetTopic().subscribe((res: any) => {
+      let getTopic = res.json();
+      console.log(getTopic);
+      this.Card = getTopic.topicData;
+    })
+      this.myDomain = this.route.params.subscribe(params => {
       this.data = params['a'];
-      // this.product = JSON.parse(this.data);
-      console.log(this.data)
+
+      console.log('selected Subdomain :-', this.data)
     });
   }
 

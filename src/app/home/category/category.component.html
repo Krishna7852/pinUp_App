@@ -5,8 +5,27 @@
   </div>
   <div class=" mylist dropdown-menu">
     <div *ngFor="let item of Category">
-      <strong><p class="cName">{{ item.newString }}</p></strong>
+      <strong><p class="cName">{{ item.topic }}</p></strong>
     </div>
   </div>
 </div>
 </div>
+
+
+<!--
+<div class="col-xs-3">
+   <div class="panel panel-primary">
+      <div class="panel-heading">Drag Items from here</div>
+      <div class="panel-body scroll-list">
+         <ul class="list-group">
+            <li draggable *ngFor="let item of vegetables"
+            [dragOverClass]="'drag-over-border'"
+            [dragData]="item" class="list-group-item"
+            [dragScope]="item.type">
+            {{item.name}}
+            </li>
+         </ul>
+
+      </div>
+   </div>
+</div> -->

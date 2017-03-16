@@ -14,18 +14,15 @@ export class LogInComponent implements OnInit {
   error = false;
   errorMessage = '';
   constructor(private fb: FormBuilder, private router: Router , private auth:AuthService) {
-    this.myForm = this.fb.group({
+      this.myForm = this.fb.group({
       emailAddress: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
   onlogIn(): void {
-    this.auth.onLogin(this.myForm.value)
-  console.log(this.myForm.value);
-    // this.router.navigate(['/home']);
+    this.auth.onLogin(this.myForm.value);
   }
   ngOnInit(): any {
-
-this.auth.skipIfLoggedIn();
+    this.auth.skipIfLoggedIn();
   }
 }

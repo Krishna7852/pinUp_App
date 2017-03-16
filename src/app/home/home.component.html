@@ -1,38 +1,37 @@
 <div class="container-fluid">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h2><img src="./assets/pinup.png" />PinUp</h2>
+      </div>
+      <ul class="nav navbar-nav" style="float:right;">
+        <li>
+          <h4>{{data}}</h4></li>
+        <li>
+          <h4>{{myAdmin}} </h4></li>
+        <!-- <li style=" margin-top:5%" class="setting"> <span class="glyphicon glyphicon-cog" popover="logout" [popoverDismissTimeout]="2000"></button></li> -->
+        <li style=" margin-top:18%" class="setting dropdown">
 
-<nav class="navbar">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <h2><img src="./assets/pinup.png" />PinUp</h2>
+  <!-- <div class="dropdown"> -->
+
+
+  <span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown">
+  </span>
+  <!-- </div> -->
+  <ul class="dropdown-menu" >
+       <li id="menus"><a (click)="onLogout()" style="width:80px">logout</a></li>
+
+     </ul>
+  </li>
+   <!-- popover="Log-out" popover-trigger="mouseenter" popover-placement="bottom" [popoverDismissTimeout]="2000"> -->
+        <!-- (click)="onLogout()" -->
+
+
+      </ul>
     </div>
-    <ul class="nav navbar-nav" style="float:right;">
-      <li>
-        <h4 >{{data}}</h4></li>
-      <li>
-        <h4>Admin </h4></li>
-      <!-- <li style=" margin-top:5%" class="setting"> <span class="glyphicon glyphicon-cog" popover="logout" [popoverDismissTimeout]="2000"></button></li> -->
-      <li style=" margin-top:5%" class="setting dropdown">
-
-<!-- <div class="dropdown"> -->
-
-
-<span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" style="padding:20px;">
-</span>
-<!-- </div> -->
-<ul class="dropdown-menu" >
-     <li ><a (click)="onLogout()" id="menus">logout</a></li>
-
-   </ul>
-</li>
- <!-- popover="Log-out" popover-trigger="mouseenter" popover-placement="bottom" [popoverDismissTimeout]="2000"> -->
-      <!-- (click)="onLogout()" -->
-
-
-    </ul>
-  </div>
-</nav>
+  </nav>
 </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="leftSide">
       <div class="sidebar col-md-3 col-sm-3 col-xs-3 col-lg-3">
@@ -41,11 +40,11 @@
 
         <div class="Card">
           <div *ngFor="let cards of Card">
-            <p class="cName">{{ cards.newString }}</p>
+            <p class="cName">{{ cards.topic }}</p>
           </div>
           <form (submit)="addToCard($event)">
             <div style="display: inline-block">
-              <input [(ngModel)]="newString" id="name" name="newString" placeholder="Category +" />
+              <input [(ngModel)]="topic" id="name" name="topic" placeholder="Category +" />
               <button type="submit" style='visibility: hidden;'>+</button>
             </div>
           </form>
@@ -59,5 +58,3 @@
     </div>
   </div>
 </div>
-<!-- <router-outlet></router-outlet> -->
-  <!-- <app-category [name]='Card1'><app-category> -->
