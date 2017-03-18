@@ -5,20 +5,31 @@ import { Observable } from 'rxjs'
 import 'rxjs/Rx';
 @Injectable()
 export class AuthService {
+
   private topicUrl = 'http://192.168.0.54:3000';
   private baseUrl = 'http://192.168.0.2:3000';
   public email: any;
   public selectedDomain:any;
   public getToken:any;
-  public myUser:string;
-  // public editTopic:any;
-		constructor(private http: Http, private router: Router) {}
+  public myUser:any=[];
 
+		constructor(private http: Http, private router: Router) {}
+// onAdminUser() {
+//   console.log(this.myUser)
+//   return this.myUser;
+// }
   onRegisterAdmin(user) {
     this.email = user.emailAddress;
+
     this.myUser = user.username;
     console.log(this.myUser)
     localStorage.setItem('username',this.myUser);
+
+
+    // this.myUser = user;
+    // console.log(this.myUser)
+
+    // console.log(this.email)
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -31,6 +42,7 @@ export class AuthService {
   }
 
   onLogin(loginUser) {
+
       return this.http.post(this.baseUrl + '/admin/signin', loginUser).subscribe(response => {
       this.getToken =response.json().token;
       console.log(this.getToken)
@@ -68,12 +80,14 @@ onSubDomain(domain) {
   }
 
 onPostTopic(topic) {
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('x-token',this.getToken);
     console.log('pstTopic',topic);
     return this.http.post(this.topicUrl+'/admin/addTopic',topic,{ headers: headers })
     .subscribe((res: any) => {
+
     let Topic = res.json();
     console.log(Topic);
     alert(topic.topic+' '+Topic.message);
@@ -85,6 +99,7 @@ onGetTopic() {
   {
     this.getToken=localStorage.getItem('token');
   }
+
     headers.append('Content-Type', 'application/json');
     headers.append('x-token',this.getToken);
 

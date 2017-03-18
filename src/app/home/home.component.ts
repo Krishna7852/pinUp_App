@@ -9,20 +9,21 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    myForm1: FormGroup;
+  myForm1: FormGroup;
   title = 'app works!';
   topic: string = '';
   Card: any = [];
   CardObj: any;
   private myDomain: any;
+
   data: any;
   myAdmin: string;
-  constructor(private auth: AuthService, private route: ActivatedRoute ,private fb: FormBuilder) {
+  constructor(private auth: AuthService, private route: ActivatedRoute, private fb: FormBuilder) {
 
   }
 
   addToCard(event): void {
-      this.CardObj = {
+    this.CardObj = {
       topic: this.topic
       // completed: false
 
@@ -36,20 +37,20 @@ export class HomeComponent implements OnInit {
   }
   removeTopic(index) {
 
-var myid = {
-  'topicID' :index
-}
-console.log('topicID1:-',myid)
+    var myid = {
+      'topicID': index
+    }
+    console.log('topicID1:-', myid)
 
     this.auth.onRemoveTopic(myid);
     this.Card.splice(index, 1);
     location.reload();
-    
+
   }
   submit(id) {
     var myEditTopic = {
-      'topic':this.myForm1.value,
-      'topicID':id
+      'topic': this.myForm1.value,
+      'topicID': id
     }
     this.auth.onUpdateTopic(myEditTopic);
     // console.log('editedID:-',id)
@@ -64,15 +65,15 @@ console.log('topicID1:-',myid)
       topic: ['', Validators.compose([Validators.required])]
     })
 
-      this.myAdmin = localStorage.getItem('username');
+    this.myAdmin = localStorage.getItem('username');
 
-      console.log('myAdmin :-', this.myAdmin);
-      this.auth.onGetTopic().subscribe((res: any) => {
+    console.log('myAdmin :-', this.myAdmin);
+    this.auth.onGetTopic().subscribe((res: any) => {
       let getTopic = res.json();
-      console.log('getTopic ',getTopic);
+      console.log('getTopic ', getTopic);
       this.Card = getTopic.topicData;
     })
-      this.myDomain = this.route.params.subscribe(params => {
+    this.myDomain = this.route.params.subscribe(params => {
       this.data = params['a'];
 
       console.log('selected Subdomain :-', this.data)

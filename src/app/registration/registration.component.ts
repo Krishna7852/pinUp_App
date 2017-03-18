@@ -22,6 +22,7 @@ export class RegistrationComponent implements OnInit {
     console.log(this.myForm.value)
     this.router.navigate(['/subdomain']);
 
+
   }
 
   ngOnInit(): any {

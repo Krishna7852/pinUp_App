@@ -20,7 +20,9 @@ export class LogInComponent implements OnInit {
     });
   }
   onlogIn(): void {
+
     this.auth.onLogin(this.myForm.value);
+
   }
   ngOnInit(): any {
     this.auth.skipIfLoggedIn();
