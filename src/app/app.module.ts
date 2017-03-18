@@ -16,8 +16,8 @@ import { LogInComponent } from './log-in/log-in.component';
 // import { Ng2SelectModule } from 'ng2-material-select';
 import {AuthService } from './services/auth-service.service';
 import { AuthGuard } from './services/authGuard';
-import { PopoverModule } from 'ng2-popover';
-import {Ng2DragDropModule} from "ng2-drag-drop";
+// import { PopoverModule } from 'ng2-popover';
+// import {Ng2DragDropModule} from "ng2-drag-drop";
 
 @NgModule({
   declarations: [
@@ -33,9 +33,9 @@ import {Ng2DragDropModule} from "ng2-drag-drop";
     FormsModule,
     HttpModule,
 ReactiveFormsModule,
-    routing,
-     PopoverModule,
-    Ng2DragDropModule
+    routing
+    //  PopoverModule,
+    // Ng2DragDropModule
     // routingHome
 
   ],

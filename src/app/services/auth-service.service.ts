@@ -5,12 +5,13 @@ import { Observable } from 'rxjs'
 import 'rxjs/Rx';
 @Injectable()
 export class AuthService {
-  private topicUrl = 'http://192.168.0.6:3000';
-  private baseUrl = 'http://192.168.0.3:3000';
+  private topicUrl = 'http://192.168.0.54:3000';
+  private baseUrl = 'http://192.168.0.2:3000';
   public email: any;
   public selectedDomain:any;
   public getToken:any;
   public myUser:string;
+  // public editTopic:any;
 		constructor(private http: Http, private router: Router) {}
 
   onRegisterAdmin(user) {
@@ -34,7 +35,9 @@ export class AuthService {
       this.getToken =response.json().token;
       console.log(this.getToken)
       localStorage.setItem('token',this.getToken );
-      this.router.navigate(['admin',this.selectedDomain]);
+      if (localStorage.getItem('token') != "undefined"){
+      this.router.navigate(['admin',this.selectedDomain])
+    };
       console.log(response)
       alert(response.json().description);
     },
@@ -82,11 +85,35 @@ onGetTopic() {
   {
     this.getToken=localStorage.getItem('token');
   }
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Content-Type', 'application/json');
     headers.append('x-token',this.getToken);
 
-    return this.http.get(this.topicUrl+'/admin/getTopicList',{ headers: headers });;
+    return this.http.get(this.topicUrl+'/admin/getTopicList',{ headers: headers });
 
+}
+onRemoveTopic(topicId) {
+  console.log('authid',topicId);
+
+  var headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  headers.append('x-token',this.getToken);
+  return this.http.post(this.topicUrl+'/admin/removeTopic',topicId,{ headers: headers }).subscribe((res: any) => {
+  let removedTopic = res.json();
+  console.log("removedTopic",removedTopic);
+  // alert(topic.topic+' '+Topic.message);
+});
+
+}
+onUpdateTopic(editData) {
+console.log(editData)
+var headers = new Headers();
+headers.append('Content-Type', 'application/x-www-form-urlencoded');
+headers.append('x-token',this.getToken);
+return this.http.post(this.topicUrl+'/admin/updateTopic',editData,{ headers: headers }).subscribe((res: any) => {
+let editedTopic = res.json();
+console.log("editedTopic",editedTopic);
+// alert(topic.topic+' '+Topic.message);
+});
 }
   isAuthenticated() {
     if (localStorage.getItem('token')) {

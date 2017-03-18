@@ -3,6 +3,7 @@
   text-transform: full-width;
   font-family: Helvetica, Arial, sans-serif;
 font-size: 14px;
+background-color:#f5f5dc;
 }
 h4{
   padding:20px;
@@ -38,13 +39,18 @@ position: relative;
 
 }
 
-.cName {
-  text-align: center;
+#cName {
+  /*text-align: center;*/
+  margin-left: 30%;
 color: #010101;
 font-family: LucidaGrande;
 font-size: 16px;
 }
 
+span#caretList:hover {
+  /*display: block;*/
+  cursor: pointer;
+}
 .Home {
 text-align: center;
 color: #010101;
@@ -62,3 +68,50 @@ hr {
 form {
     margin-left: 30px;
 }
+@media only screen and (min-width:300px) and (max-width:800px){
+  li {
+    /*padding:10px;*/
+    display:inline-block;
+  }
+  ul{
+    margin-top: -70px;
+  }
+  form {
+    margin-left: -50px;
+  }
+
+}
+/*.Card {
+  width: 25%;
+  height: 25%;
+  border-radius: 3px;
+  opacity: 1;
+  background-color: #D8D8D8;
+  box-shadow: 1 1 2 0 rgba(0, 0, 0, 50%);
+}*/
+/*.ion-ios-list-outline {
+  opacity: 1;
+  cursor: pointer;
+  text-align: center;
+  color: #1ABAD2;
+  font-family: Ionicons;
+  font-size: 25px;
+  padding-top: 40%;
+}
+p.listName {
+
+color: #1ABAD2;
+font-family: LucidaGrande-Bold;
+font-size: 15px;
+}
+.mylist {
+
+width: 0%;
+margin-left: 25%;
+cursor: pointer;
+overflow: hidden;
+
+}*/
+/*.cName:hover {
+  color: #1ABAD2;
+}*/

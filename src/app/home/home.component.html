@@ -9,24 +9,13 @@
           <h4>{{data}}</h4></li>
         <li>
           <h4>{{myAdmin}} </h4></li>
-        <!-- <li style=" margin-top:5%" class="setting"> <span class="glyphicon glyphicon-cog" popover="logout" [popoverDismissTimeout]="2000"></button></li> -->
         <li style=" margin-top:18%" class="setting dropdown">
-
-  <!-- <div class="dropdown"> -->
-
-
-  <span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown">
-  </span>
-  <!-- </div> -->
-  <ul class="dropdown-menu" >
-       <li id="menus"><a (click)="onLogout()" style="width:80px">logout</a></li>
-
-     </ul>
-  </li>
-   <!-- popover="Log-out" popover-trigger="mouseenter" popover-placement="bottom" [popoverDismissTimeout]="2000"> -->
-        <!-- (click)="onLogout()" -->
-
-
+          <span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown">
+          </span>
+          <ul class="dropdown-menu">
+            <li id="menus"><a (click)="onLogout()" style="width:80px">logout</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </nav>
@@ -34,13 +23,37 @@
 <div class="container-fluid">
   <div class="row">
     <div class="leftSide">
-      <div class="sidebar col-md-3 col-sm-3 col-xs-3 col-lg-3">
+      <div class="sidebar col-md-2 col-sm-2 col-xs-2 col-lg-2">
         <h4 class="Home">Home</h4>
         <hr>
-
         <div class="Card">
-          <div *ngFor="let cards of Card">
-            <p class="cName">{{ cards.topic }}</p>
+          <div *ngFor="let cards of Card" let i="index" class="dropdown">
+            <span id="cName">{{ cards.topic }}</span><span id="caretList" [ngClass]="cards.completed" class="dropdown-toggle" data-toggle="dropdown">
+              <b  class="caret" ></b></span>
+            <ul class="dropdown-menu">
+              <li><a data-toggle="modal" data-target="#myModal">Edit</a></li>
+              <li><a (click)="removeTopic(cards.topicID)">Delete</a></li>
+            </ul>
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <form [formGroup]="myForm1" (ngSubmit)="submit(cards.topicID)">
+
+                      <div class="form-group">
+
+                        <input type="text" formControlName="topic" class="form-control" value="">
+                      </div>
+                      <button type="submit"  class="btn btn-info" >submit</button>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <form (submit)="addToCard($event)">
             <div style="display: inline-block">
@@ -52,7 +65,7 @@
       </div>
     </div>
     <div class="rightSide">
-      <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9">
+      <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
         <app-category [Category]='Card'></app-category>
       </div>
     </div>
